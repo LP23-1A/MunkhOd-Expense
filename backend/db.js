@@ -5,14 +5,7 @@ const { Pool } = pg;
 
 dotenv.config();
 
-const pool = new Pool({
+export const pool = new Pool({
   ssl: true,
   connectionString: process.env.DB_URL,
 });
-
-pool.connect();
-pool.query();
-
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-};
