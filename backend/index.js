@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import bp from "body-parser";
-import { pool } from "./db.js";
+import { pool } from "./src/utilities/db.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
@@ -13,7 +13,7 @@ app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);
 });
 
-app.post("/createTable", async (_, res) => {
+app.post("/createTable", async (req, res) => {
   try {
     const tableQueryText = `
     CREATE TABLE IF NOT EXISTS users (
