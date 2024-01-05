@@ -9,8 +9,12 @@ dotenv.config();
 const PORT = process.env.PORT || 8001;
 const app = express();
 
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(bp.json());
-app.use(cors());
 app.use("/user", user);
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}.`);
