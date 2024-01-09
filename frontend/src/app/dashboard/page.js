@@ -3,6 +3,7 @@ import Card1 from "@/components/Card1";
 import Card2 from "@/components/Card2";
 import Card3 from "@/components/Card3";
 import Income1 from "@/components/Income1";
+import Income2 from "@/components/Income2";
 
 export default function signup() {
   return (
@@ -16,8 +17,9 @@ export default function signup() {
           <Card2 />
           <Card3 />
         </div>
-        <div className="flex gap-6 px-[120px]">
+        <div className="flex gap-8 px-[120px]">
           <Income1 />
+          <Income2 />
         </div>
       </div>
     </main>
