@@ -24,49 +24,60 @@ ChartJS.register(
 
 const PieChart = () => {
   const [chartData, setChartData] = useState({
-    datasets: [],
+    labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
+    datasets: [
+      {
+        data: [5000000, 5000000, 5000000, 5000000, 5000000],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 2,
+      },
+    ],
   });
 
-  const [chartOptions, setChartOptions] = useState({});
-
-  useEffect(() => {
-    setChartData({
-      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-      datasets: [
-        {
-          label: false,
-          data: [5000000, 5000000, 5000000, 5000000, 5000000],
-          backgroundColor: [
-            "rgba(255, 99, 132, 0.2)",
-            "rgba(54, 162, 235, 0.2)",
-            "rgba(255, 206, 86, 0.2)",
-            "rgba(75, 192, 192, 0.2)",
-            "rgba(153, 102, 255, 0.2)",
-            "rgba(255, 159, 64, 0.2)",
-          ],
-          borderColor: [
-            "rgba(255, 99, 132, 1)",
-            "rgba(54, 162, 235, 1)",
-            "rgba(255, 206, 86, 1)",
-            "rgba(75, 192, 192, 1)",
-            "rgba(153, 102, 255, 1)",
-            "rgba(255, 159, 64, 1)",
-          ],
-          borderWidth: 1,
+  const [chartOptions, setChartOptions] = useState({
+    plugins: {
+      tooltip: {
+        enabled: false, // Disable tooltips
+      },
+      legend: {
+        display: true, // Hide the legend
+        position: "right",
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
         },
-      ],
-    });
-  }, []);
+      },
+    },
+    elements: {
+      arc: {
+        borderWidth: 0, // Hide the border of the arcs
+      },
+    },
+  });
 
   return (
     <>
-      <div className="w-full relative p-1 bg-white">
-        <Pie
-          data={chartData}
-          options={chartOptions}
-          width="200px"
-          height="200px"
-        />
+      <div
+        className="w-full relative p-1 bg-white"
+        style={{ width: "250px", height: "250px" }}
+      >
+        <Pie data={chartData} options={chartOptions} />
       </div>
     </>
   );
