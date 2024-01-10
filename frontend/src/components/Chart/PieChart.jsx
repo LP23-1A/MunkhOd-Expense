@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   ArcElement,
@@ -24,44 +24,35 @@ ChartJS.register(
 
 const PieChart = () => {
   const [chartData, setChartData] = useState({
-    labels: ["Red", "Blue", "Yellow", "Green", "Purple"],
+    labels: ["Bills", "Food", "Shopping", "Insurence", "Clothing"],
     datasets: [
       {
         data: [5000000, 5000000, 5000000, 5000000, 5000000],
         backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
+          "rgba(22, 189, 202, 1)",
+          "rgba(28, 100, 242, 1)",
+          "rgba(231, 70, 148, 1)",
+          "rgba(242, 144, 28, 1)",
+          "rgba(253, 186, 140, 1)",
         ],
         borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
+          "rgba(22, 189, 202, 1)",
+          "rgba(28, 100, 242, 1)",
+          "rgba(231, 70, 148, 1)",
+          "rgba(242, 144, 28, 1)",
+          "rgba(253, 186, 140, 1)",
         ],
-        borderWidth: 2,
+        borderWidth: 1,
       },
     ],
   });
 
   const [chartOptions, setChartOptions] = useState({
+    cutoutPersentage: 60,
     plugins: {
-      tooltip: {
-        enabled: false, // Disable tooltips
-      },
       legend: {
-        display: true, // Hide the legend
+        display: false, // Hide the legend
         position: "right",
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
       },
     },
     elements: {
@@ -71,15 +62,52 @@ const PieChart = () => {
     },
   });
 
+  const getSymbolForLabel = (label) => {
+    const symbols = {
+      Bills: "💸",
+      Food: "🍔",
+      Shopping: "🛍️",
+      Insurence: "🛡️",
+      Clothing: "👕",
+    };
+    return symbols[label] || "";
+  };
+
+  const total = chartData.datasets[0].data.reduce(
+    (sum, value) => sum + value,
+    0
+  );
+
+  const tableData = chartData.labels.map((label, index) => ({
+    label: label,
+    value: chartData.datasets[0].data[index],
+    percentage: ((chartData.datasets[0].data[index] / total) * 100).toFixed(2),
+    color: chartData.datasets[0].backgroundColor[index],
+    symbol: getSymbolForLabel(label),
+  }));
+
   return (
-    <>
-      <div
-        className="w-full relative p-1 bg-white"
-        style={{ width: "250px", height: "250px" }}
-      >
-        <Pie data={chartData} options={chartOptions} />
+    <div className="flex gap-5">
+      <div className="relative p-2" style={{ width: "220px", height: "220px" }}>
+        <Doughnut data={chartData} options={chartOptions} />
       </div>
-    </>
+      <div className="table-container">
+        <table className="table-auto">
+          <tbody>
+            {tableData.map((data, index) => (
+              <tr key={index}>
+                <td className="px-3 py-2">{data.symbol}</td>
+                <td className=" px-3 py-2" style={{ color: data.color }}>
+                  {data.label}
+                </td>
+                <td className="px-3 py-2">{data.value}</td>
+                <td className="px-3 py-2">{data.percentage}%</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
   );
 };
 

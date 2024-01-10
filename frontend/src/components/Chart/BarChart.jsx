@@ -22,34 +22,48 @@ ChartJS.register(
 
 const BarChart = () => {
   const [chartData, setChartData] = useState({
-    datasets: [],
+    labels: ["jul", "jul", "jul", "jul", "jul", "jul", "jul"],
+    datasets: [
+      {
+        label: false,
+        data: [3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000],
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgb(132,204,22)",
+      },
+      {
+        label: false,
+        data: [2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000],
+        borderColor: "rgb(53, 162, 235)",
+        backgroundColor: "rgb(249,115,22)",
+      },
+    ],
   });
 
-  const [chartOptions, setChartOptions] = useState({});
-
-  useEffect(() => {
-    setChartData({
-      labels: ["jul", "jul", "jul", "jul", "jul", "jul", "jul"],
-      datasets: [
-        {
-          label: false,
-          data: [3000000, 3000000, 3000000, 3000000, 3000000, 3000000, 3000000],
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgb(132,204,22)",
+  const [chartOptions, setChartOptions] = useState({
+    plugins: {
+      tooltip: {
+        enabled: false, // Disable tooltips
+      },
+      legend: {
+        display: false, // Hide the legend
+        position: "right",
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
         },
-        {
-          label: false,
-          data: [2100000, 2100000, 2100000, 2100000, 2100000, 2100000, 2100000],
-          borderColor: "rgb(53, 162, 235)",
-          backgroundColor: "rgb(249,115,22)",
-        },
-      ],
-    });
-  }, []);
+      },
+    },
+    elements: {
+      arc: {
+        borderWidth: 0, // Hide the border of the arcs
+      },
+    },
+  });
 
   return (
     <>
-      <div className="w-full relative p-1 bg-white">
+      <div className="relative p-1 bg-white">
         <Bar
           data={chartData}
           options={chartOptions}
