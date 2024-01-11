@@ -1,3 +1,4 @@
+import AddRecordEx from "./AddRecordEx";
 import FoodIcon from "./icons/FoodIcon";
 import House from "./icons/House";
 
@@ -189,6 +190,10 @@ export default function Records3() {
             <p className="text-[16px] font-semibold text-[#EAB308]">1,000₮</p>
           </div>
         </div>
+      </div>
+
+      <div>
+        <AddRecordEx />
       </div>
     </main>
   );
