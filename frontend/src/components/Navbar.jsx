@@ -3,7 +3,7 @@ import LoginLogo12 from "@/components/icons/LoginLogo12";
 
 export default function Navbar() {
   return (
-    <div class="navbar bg-base-100">
+    <div class="navbar bg-base-100 w-[1440px] m-auto flex justify-center">
       <div class="flex-1 gap-6">
         <LoginLogo12 />
         <a class="btn btn-ghost btn-sm text-base font-semibold">Dashboard</a>

@@ -4,7 +4,7 @@ import Card2 from "@/components/Card2";
 import Card3 from "@/components/Card3";
 import Income1 from "@/components/Income1";
 import Income2 from "@/components/Income2";
-import Records from "@/components/Records";
+import Records1 from "@/components/Records1";
 
 export default function signup() {
   return (
@@ -23,7 +23,7 @@ export default function signup() {
           <Income2 />
         </div>
         <div className="flex py-8 px-[120px]">
-          <Records />
+          <Records1 />
         </div>
       </div>
     </main>
