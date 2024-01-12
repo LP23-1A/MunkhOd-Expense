@@ -1,9 +1,24 @@
+"use client";
+import { useState } from "react";
 import ArrowDrop from "./icons/ArrowDrop";
 import Eve from "./icons/Eve";
 import LeadIcon from "./icons/LeadIcon";
 import PlusIcon from "./icons/PlusIcon";
+import AddRecordEx from "./AddRecordEx";
+import AddCategory from "./AddCategory";
 
 export default function Records2() {
+  const [modal1, setModal1] = useState(false);
+  const [modal2, setModal2] = useState(false);
+  const toggleModal1 = () => {
+    setModal1(!modal1);
+    console.log(modal1);
+  };
+  const toggleModal2 = () => {
+    setModal2(!modal2);
+    console.log(modal2);
+  };
+
   return (
     <main className="w-full pt-6">
       <div className="h-[1100px] w-[282px] rounded-[18px] bg-white">
@@ -12,10 +27,27 @@ export default function Records2() {
             <h1 className="text-[16px] font-semibold">Records</h1>
           </div>
           <div className="flex flex-col gap-6">
-            <a className="btn btn-sm w-[250px] bg-[#0166FF] px-[12px] rounded-[20px] text-[16px] text-white gap-1 font-normal">
+            <a
+              onClick={toggleModal1}
+              className="btn btn-sm w-[250px] bg-[#0166FF] px-[12px] rounded-[20px] text-[16px] text-white gap-1 font-normal"
+            >
               <LeadIcon />
               Add
             </a>
+            {modal1 && (
+              <div className="flex absolute items-center left-[824px] top-[256px]">
+                <div className="w-full h-full relative">
+                  <AddRecordEx onclose={toggleModal1} />
+                </div>
+              </div>
+            )}
+            {modal2 && (
+              <div className="flex absolute items-center left-[824px] top-[256px]">
+                <div className="w-full h-full relative">
+                  <AddCategory onclose={toggleModal2} />
+                </div>
+              </div>
+            )}
             <input
               type="text"
               placeholder="Search"
@@ -149,7 +181,10 @@ export default function Records2() {
                     </div>
                     <ArrowDrop />
                   </div>
-                  <a className="btn btn-sm w-[250px] bg-white px-[12px] rounded-[20px] text-[16px] gap-1 font-normal">
+                  <a
+                    className="btn btn-sm w-[250px] bg-white px-[12px] rounded-[20px] text-[16px] gap-1 font-normal"
+                    onClick={toggleModal2}
+                  >
                     <PlusIcon />
                     Add Category
                   </a>

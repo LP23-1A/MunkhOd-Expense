@@ -1,6 +1,8 @@
+"use client";
 import AddRecordEx from "./AddRecordEx";
 import FoodIcon from "./icons/FoodIcon";
 import House from "./icons/House";
+import { useState } from "react";
 
 export default function Records3() {
   return (
@@ -190,10 +192,6 @@ export default function Records3() {
             <p className="text-[16px] font-semibold text-[#EAB308]">1,000₮</p>
           </div>
         </div>
-      </div>
-
-      <div>
-        <AddRecordEx />
       </div>
     </main>
   );
