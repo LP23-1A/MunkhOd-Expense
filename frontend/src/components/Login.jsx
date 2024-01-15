@@ -7,21 +7,17 @@ import { useState } from "react";
 
 const api = "http://localhost:8001/user";
 
-export default function signup() {
-  const [name, setName] = useState("");
+export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
-
-  const signup = async () => {
+  const login = async () => {
     try {
-      let res = await axios.post(api, { name, email, password, rePassword });
+      let res = await axios.post(api, { email, password });
       console.log(res.data);
     } catch (error) {
-      console.error("signup failed", error);
+      console.error("login failed", error);
     }
   };
-
   return (
     <main>
       <div className="flex w-full">
@@ -31,19 +27,12 @@ export default function signup() {
             <LoginLogo2 />
           </div>
           <div className="flex flex-col items-center gap-2">
-            <h1 className="text-[24px] font-semibold">Create Geld account</h1>
+            <h1 className="text-[24px] font-semibold">Welcome Back</h1>
             <p className="text-[16px] font-normal">
-              Sign up below to create your Wallet account
+              Welcome back, Please enter your details
             </p>
           </div>
           <div className="flex flex-col gap-4">
-            <input
-              className="p-[16px] border rounded-lg bg-[#F3F4F6] border-[#D1D5DB] w-[384px] text-[#A3A3A3]"
-              type="text"
-              placeholder="Name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
             <input
               className="p-[16px] border rounded-lg bg-[#F3F4F6] border-[#D1D5DB] w-[384px] text-[#A3A3A3]"
               type="text"
@@ -58,24 +47,17 @@ export default function signup() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <input
-              className="p-[16px] border rounded-lg bg-[#F3F4F6] border-[#D1D5DB] w-[384px] text-[#A3A3A3]"
-              type="text"
-              placeholder="Re-Password"
-              value={rePassword}
-              onChange={(e) => setRePassword(e.target.value)}
-            />
             <button
               className="flex items-center justify-center w-[384px] h-[48px] rounded-[20px] bg-[#0166FF] text-[#FFFFFF]"
-              onClick={signup}
+              onClick={login}
             >
-              Sign up
+              Log in
             </button>
           </div>
           <div className="flex gap-2">
-            <button>Already have account?</button>
-            <Link href={"/login"}>
-              <button className="text-[#0166FF]">Log in</button>
+            <button>Don't have account?</button>
+            <Link href={"/signup"}>
+              <button className="text-[#0166FF]">Sign Up</button>
             </Link>
           </div>
         </div>
