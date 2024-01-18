@@ -12,10 +12,9 @@ export default function signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
-
   const signup = async () => {
     try {
-      let res = await axios.post(api, { name, email, password, rePassword });
+      let res = await axios.post(api, { name, email, password });
       console.log(res.data);
     } catch (error) {
       console.error("signup failed", error);
