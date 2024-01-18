@@ -24,13 +24,13 @@ export const getOneUser = async (req, res) => {
 };
 
 export const createUser = async (req, response) => {
-  const { name, email } = req.body;
+  const { name, email, password } = req.body;
 
   try {
     const queryText =
-      "INSERT INTO users (id, name, email) VALUES (gen_random_uuid(), $1, $2) RETURNING *";
+      "INSERT INTO users (id, name, email, password) VALUES (gen_random_uuid(), $1, $2, $3) RETURNING *";
 
-    const res = await pool.query(queryText, [name, email]);
+    const res = await pool.query(queryText, [name, email, password]);
     response.send(res.rows[0]);
   } catch (error) {
     console.error(error);
