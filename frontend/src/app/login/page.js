@@ -16,7 +16,7 @@ export default function Login() {
   const login = async () => {
     try {
       let res = await axios.post(api, { email, password });
-      if (res.data === "succes") {
+      if (res.data.success) {
         console.log(res.data);
         router.push("/dashboard");
       }
