@@ -1,8 +1,6 @@
 "use client";
-import AddRecordEx from "./AddRecordEx";
 import FoodIcon from "./icons/FoodIcon";
 import House from "./icons/House";
-import { useState } from "react";
 
 export default function Records3() {
   return (

@@ -1,20 +1,33 @@
+"use client";
 import LeadIcon from "@/components/icons/LeadIcon";
 import LoginLogo12 from "@/components/icons/LoginLogo12";
+import Link from "next/link";
+import AddRecordEx from "./AddRecordEx";
+import LogOut from "./LogOut";
 
 export default function Navbar() {
   return (
     <div class="navbar bg-base-100 w-[1440px] m-auto flex justify-center">
       <div class="flex-1 gap-6">
         <LoginLogo12 />
-        <a class="btn btn-ghost btn-sm text-base font-semibold">Dashboard</a>
-        <a class="btn btn-ghost btn-sm text-base font-normal">Records</a>
+        <Link href={"/dashboard"}>
+          <button class="btn btn-ghost btn-sm text-base font-semibold">
+            Dashboard
+          </button>
+        </Link>
+
+        <Link href={"/records"}>
+          <button class="btn btn-ghost btn-sm text-base font-normal">
+            Records
+          </button>
+        </Link>
       </div>
       <div class="flex-none">
         <div>
-          <a class="btn btn-sm bg-[#0166FF] px-[12px] rounded-[20px] text-[16px] text-white gap-1 font-normal">
+          <button class="btn btn-sm bg-[#0166FF] px-[12px] rounded-[20px] text-[16px] text-white gap-1 font-normal">
             <LeadIcon />
             Record
-          </a>
+          </button>
         </div>
         <div class="dropdown dropdown-end">
           <div
@@ -42,9 +55,7 @@ export default function Navbar() {
             <li>
               <a>Settings</a>
             </li>
-            <li>
-              <a>Logout</a>
-            </li>
+            <button>Log Out</button>
           </ul>
         </div>
       </div>

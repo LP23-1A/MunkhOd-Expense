@@ -4,23 +4,41 @@ import LoginLogo2 from "@/components/icons/LoginLogo2";
 import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
+import Reload from "../reload/page.js";
 
 const api = "http://localhost:8001/user";
 
-export default function signup() {
+export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rePassword, setRePassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
   const signup = async () => {
     try {
+      if (
+        input.password !== input.confirmPassword &&
+        !imput &&
+        !confirmPassword
+      ) {
+        setError("Passwords do not match");
+        return;
+      }
+      setLoading(true);
       let res = await axios.post(api, { name, email, password });
       console.log(res.data);
     } catch (error) {
-      console.error("signup failed", error);
+      if (error.response && error.response.status === 409) {
+        setError("Email already exists.");
+      } else {
+        console.error("Signup failed", error);
+        setError("An error occurred during signup.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
-
   return (
     <main>
       <div className="flex w-full">
@@ -67,8 +85,9 @@ export default function signup() {
             <button
               className="flex items-center justify-center w-[384px] h-[48px] rounded-[20px] bg-[#0166FF] text-[#FFFFFF]"
               onClick={signup}
+              disabled={loading}
             >
-              Sign up
+              {loading ? <Reload /> : "Sign up"}
             </button>
           </div>
           <div className="flex gap-2">
